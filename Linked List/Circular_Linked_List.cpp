@@ -13,14 +13,13 @@ class node{
     }
 
     ~node(){
-			int value=this->data;
-			if(this->next!=NULL){
-				delete next;
+	int value=this->data;
+	if(this->next!=NULL){
+		delete next;
                 this->next=NULL;
-			}
-			
-			cout<<"memory cleared for data"<<value<<endl;
-		}
+	}	
+	cout<<"memory cleared for data"<<value<<endl;
+	}
 
 };
 
@@ -70,6 +69,13 @@ void deleteNode(node* &tail, int value){
         }
 
         prev-> next = curr->next;
+
+	// for 1 node linked list
+	if(curr==prev){
+		tail=prev;
+	}
+
+	// >=2 nodes ke liye    
 	if(tail==curr){
 		tail=prev;
 	}
