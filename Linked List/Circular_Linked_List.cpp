@@ -70,6 +70,9 @@ void deleteNode(node* &tail, int value){
         }
 
         prev-> next = curr->next;
+	if(tail==curr){
+		tail=prev;
+	}
         curr->next=NULL;
         delete curr;
     }
