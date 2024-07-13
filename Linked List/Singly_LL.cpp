@@ -10,7 +10,8 @@ class node{
 			this->data=data;
 			this->next=NULL;
 		}
-		
+
+		// destructor
 		~node(){
 			int value= this->data;
 			if(this->next!=NULL){
@@ -18,86 +19,94 @@ class node{
 				next=NULL;
 			}
 			
-			cout<<"memory cleared for data"<<value<<endl;
+			cout<<"memory cleared for node with data"<<value<<endl;
 		}
 };
 
-void insertnode(node* &tail, int element,int d){
-	if(tail==NULL){
-		node* newnode= new node(d);
-		tail= newnode;
-		newnode->next=newnode;
+// node* &head reference taken because i dont want to create a copy and changes should be made in the original linked list
+
+void insertatHead(node* &head, ind d){
+	node* temp= new node(d);
+	temp->next=head;
+	head=temp;
+}
+
+void insertatTail(node* &tail, int d){
+	node* temp = new node(d);
+	tail->next=temp;
+	tail=tail->next; //tail=temp;
+}
+
+void insertatPosition(node* &tail, node* &head, int pos, int d){
+
+	// first position
+	if(pos==1){
+		insetatHead(head,d);
+		return;
 	}
+
+	node* temp = head;
+	int cnt=1;
+
+	// n position pe jaana hai toh n-1 node tak traversal karo
+	while(cnt<pos-1){
+		temp=temp->next;
+		cnt++;
+	}
+
+	//last position
+	if(temp->next == NULL){
+		insertatTail(tail,d);
+		return;
+	}
+
+	node* nodeToInsert = new node(d);
+	nodeToInsert->next= temp->next;
+	temp->next = nodeToInsert;	
 	
-	else{
-		node* curr=tail;
-		
-		while(curr->next!=  element){
-			curr=curr->next;
-		}
-		
-		node* temp= new node(d);
-		temp->next=curr->next;
-		curr->next=temp;
-	}
 }
 
 void print(node* &tail){
 	
 	node* temp= tail;
+
+	//use if(){}
 	do{
-		cout<<tail->data<<endl<<endl;
-		tail=tail->next;
+		cout<< tail->data <<endl;
+		temp=temp->next;
 	}
 	while(tail!=temp);
 }
 
-void deletenode(node* &tail, int value){
-	if(tail==NULL){
-		cout<<"check again"<<endl;
+//deletion with position
+void deleteNodePosition(int pos,node* &head){
+	if(pos==1){
+		node* temp = head;
+		head=head->next;
+		//memory free
+		delete temp;
 	}
-	
-	else{
-		node* prev=tail;
-		node* curr=prev->next;
-		
-		while(curr->next!=value){
-			curr=curr->next;
-		}
-		
-		prev->next=curr->next;
-		
-		if(curr==prev){
-			tail=NULL;
-		}
-		
-		if(tail==curr){
-			tail=prev;
-		}
-		
-		curr->next=NULL;
-		delete curr;
-		}	
+
+	node* curr = head;
+	node* prev = NULL;
+
+	int cnt=1;
+	while(cnt<pos){
+		prev=curr;
+		curr=curr->next;
+		cnt++
+	}
+
+	prev->next = curr ->next;
+	curr->next = NULL;
+	delete curr;
 }
+
+// deletion with value 
 
 int main(){
 	
 	node* tail=NULL;
-	
-	insertnode(tail,2,3);
-	print(tail);
-	
-		insertnode(tail,3,5);
-	print(tail);
-	
-		insertnode(tail,3,4);
-	print(tail);
-	
-	
-		deletenode(tail,3);
-	print(tail);
-	
-		insertnode(tail,5,7);
-	print(tail);
-	
+	cout<<head->data<<endl;
+	cout<<tail->data<<endl;
 }
