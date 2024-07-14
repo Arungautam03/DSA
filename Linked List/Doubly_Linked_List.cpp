@@ -35,12 +35,12 @@ temp=temp->next;
 return len;
 }
 
-void insertathead(node* &head,int d){
+void insertathead(node* &head,node* &tail, int d){
 
 	if(head==NULL){
 	node* temp = new node(d);
 	head=temp;
-	//tail=temp if tail is also passed
+	tail=temp;
 	}else{
 	node* temp=new node(d);
 	temp->next=head;
@@ -49,12 +49,12 @@ void insertathead(node* &head,int d){
 	}
 }
 
-void insertattail(node* &tail, int d){
+void insertattail(node* &head, node* &tail, int d){
 
 	if(tail==NULL){
 	node* temp= new node(d);
 	tail=temp;
-	//head=temp if head is present
+	head=temp;
 	}else{
 	node* temp=new node(d);
 	tail->next=temp;
