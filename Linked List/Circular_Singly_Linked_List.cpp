@@ -4,7 +4,7 @@ using namespace std;
 class node{
     public:
     int data;
-    int next;
+    node* next;
 
     //constructor
     node(int d){
@@ -23,22 +23,27 @@ class node{
 
 };
 
-void insertElement(node* &tail, int target, int d){
+// tail can access both first and last element therefore we dont make head pointer
 
+void insertElement(node* &tail, int target, int d){
+// assuming target is present in the list
+	
     //empty list
     if(tail==NULL){
-        node* temp=new node(d);
-        temp->next=temp;
-        tail=temp;
+        node* newNode=new node(d);
+        newNode->next=newNode;
+        tail=newNode;
     }else{
+	// non empty list and target is present
         node* curr = tail;
         
-        while(curr->next != ){
+        while(curr->data != target){
             curr=curr->next;
         }
-
+	    
         //curr is at target now
-        node* temp=new node(d);
+	    
+        node* temp = new node(d);
         temp->next=curr->next;
         curr->next=temp;
 
@@ -46,13 +51,18 @@ void insertElement(node* &tail, int target, int d){
 }
 
 void display(node* &tail){
+
+    if(tail==NULL){
+	    cout<<"List is Empty"<<endl;
+    }
+	
     node* temp=tail;
 
     // do while ek bari toh execute hota he hota hai toh we use it for single element in linked list
     do{
         cout<<tail->data;
         tail=tail->next;
-    }while(tail!=temp)
+    }while(tail != temp) 
 }
 
 void deleteNode(node* &tail, int value){
@@ -72,13 +82,14 @@ void deleteNode(node* &tail, int value){
 
 	// for 1 node linked list
 	if(curr==prev){
-		tail=prev;
+		tail=NULL;
 	}
 
 	// >=2 nodes ke liye    
 	if(tail==curr){
 		tail=prev;
 	}
+	    
         curr->next=NULL;
         delete curr;
     }
