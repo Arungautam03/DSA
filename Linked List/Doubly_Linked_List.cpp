@@ -122,6 +122,10 @@ void deletenode(int position, node* &head){
 		
 			cnt++;
 		}
+
+		if(curr->next == NULL){
+			tail=prev
+		}
 		
 		curr->prev=NULL;
 		prev->next=curr->next;
