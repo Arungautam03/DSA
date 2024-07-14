@@ -54,7 +54,7 @@ void insertattail(node* &tail, int d){
 	if(tail==NULL){
 	node* temp= new node(d);
 	tail=temp;
-	//head=temp if head id present
+	//head=temp if head is present
 	}else{
 	node* temp=new node(d);
 	tail->next=temp;
@@ -77,16 +77,19 @@ void insertatanyposition(node* &head, node* &tail, int position, int d){
 		cnt++;
 	}
 	
+	if(temp->next==NULL){
+		insertattail(tail,d);
+		return;
+	}
+
+	// middle ke liye
 	node* curr= new node(d);
 	curr->next=temp->next;
 	temp->next->prev=curr;
 	temp->next=curr;
 	curr->prev=temp;
 	
-	if(temp->next==NULL){
-		insertattail(tail,d);
-		return;
-	}
+	
 }
 
 void print(node* &head){
