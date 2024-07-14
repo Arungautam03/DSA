@@ -83,11 +83,11 @@ void insertatanyposition(node* &head, node* &tail, int position, int d){
 	}
 
 	// middle ke liye
-	node* curr= new node(d);
-	curr->next=temp->next;
-	temp->next->prev=curr;
-	temp->next=curr;
-	curr->prev=temp;
+	node* nodeToInsert= new node(d);
+	nodeToInsert->next=temp->next;
+	temp->next->prev=nodeToInsert;
+	temp->next=nodeToInsert;
+	nodeToInsert->prev=temp;
 	
 	
 }
