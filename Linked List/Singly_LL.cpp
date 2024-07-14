@@ -83,6 +83,7 @@ void deleteNodePosition(int pos,node* &head){
 	if(pos==1){
 		node* temp = head;
 		head=head->next;
+		temp->next = NULL;
 		//memory free
 		delete temp;
 	}
