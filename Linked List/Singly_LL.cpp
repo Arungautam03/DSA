@@ -98,6 +98,11 @@ void deleteNodePosition(int pos,node* &head){
 		cnt++
 	}
 
+	// to handle tail
+	if(curr->next == NULL){
+		tail=prev;
+	}
+
 	prev->next = curr ->next;
 	curr->next = NULL;
 	delete curr;
