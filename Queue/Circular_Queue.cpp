@@ -30,9 +30,8 @@ using namespace std;
 			}
 			
 			else if( rear==(size-1) && front!=0) {
-			
-				arr[rear]=element;
 				rear=0;
+				arr[rear]=element;
 			}
 			
 			else{
@@ -44,16 +43,14 @@ using namespace std;
 		}
 		
 		int dequeue(){
-		
-			
-				int value= arr[front];
-			arr[front]=-1;
-			
+
 			if(front==-1){
 				cout<<"queue is empty"<<endl;
 			}
+
+			int value= arr[front];
+			arr[front]=-1;
 			
-		
 			
 			else if(front==rear){
 			
@@ -62,7 +59,7 @@ using namespace std;
 			
 			else if(front==(size-1))
 			{
-				front=0;
+				front=0; // to maintain cyclic nature
 			}
 			
 			else{
