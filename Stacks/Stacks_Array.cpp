@@ -4,10 +4,11 @@
 
 using namespace std;
 class Stack {
+
+public:
   int size;
   int *arr;
   int top;
-
   
   Stack(int size){
     this->size=size;
