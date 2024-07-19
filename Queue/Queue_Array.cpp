@@ -20,9 +20,8 @@ class queue{
 				cout<<"queue is full"<<endl;
 			}
 			else{
-				rear++;
 				arr[rear]=element;
-
+				rear++;
 			}
 		}
 		
