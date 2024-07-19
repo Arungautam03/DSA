@@ -1,6 +1,8 @@
 #include<iostream>
 using namespace std;
 
+// Time Complexity : O(1)
+
 class queue{
 	private:
 		int *arr;
@@ -27,10 +29,10 @@ class queue{
 		
 		int dequeue(){
 			
-		if(front=rear)
+		if(front=rear){
 			cout<<"queue is empty"<<endl;
-			
-			else{
+			return -1
+		}else{
 				int value= arr[front];
 				arr[front]=-1;
 				front++;
