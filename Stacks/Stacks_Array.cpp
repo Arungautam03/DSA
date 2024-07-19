@@ -8,30 +8,46 @@ class Stack {
   int *arr;
   int top;
 
-  public:
-    Stack() {
-      top = -1;
-      size = 1000;
-      arr = new int[size];
-    }
-
+  
+  Stack(int size){
+    this->size=size;
+    arr = new int[size];
+    top=-1
+  }
   void push(int x) {
+    if(size-top>1){
     top++;
     arr[top] = x;
+    }else{
+      cout<<"Stack Overflow"<<endl;
+    }
   }
 
   int pop() {
+    if(top==-1){
+      cout<<"Stack is Empty"<<endl;
+    }else{
     int x = arr[top];
     top--;
     return x;
+    }
   }
 
   int Top() {
-    return arr[top];
+    if(top>=0) return arr[top];
+    else{
+      cout<<"Stack is Empty"<<endl;
+      return -1;
+    }
   }
 
   int Size() {
     return top + 1;
+  }
+
+  bool isEmpty(){
+    if(top==-1) return true;
+    else return false;
   }
 
 };
